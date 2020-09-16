@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+}
+
+.app {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.app h2 {
+  padding: 30px;
+}
+
+hr {
+  width: 80%;
+  border: 1px solid lightgrey;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 575px) {
+  .app {
+    width: 100%;
+  }
+
+  .app h2 {
+    padding: 10px;
+    font-size: 18px;
+  }
+}

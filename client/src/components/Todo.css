@@ -1,0 +1,31 @@
+.todo {
+  padding: 20px;
+  width: 80%;
+}
+
+.todo__list {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.todo__list > p {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 20px;
+  flex: 1;
+}
+
+.todo__button {
+  margin-right: 0;
+}
+
+.todo__isCompleted {
+  text-decoration: line-through;
+}
+
+.todo__whenNothingtoList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

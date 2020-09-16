@@ -1,0 +1,25 @@
+{
+  "name": "todo_with_react_backend_connected",
+  "version": "1.0.0",
+  "description": "Simple Todo app built with React.js, connected to backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "KJX63PRO",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.5"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
+  }
+}

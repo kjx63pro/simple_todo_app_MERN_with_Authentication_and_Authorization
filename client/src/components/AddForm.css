@@ -1,0 +1,12 @@
+.addForm {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addForm input {
+  width: 100%;
+  margin-right: 30px;
+  padding: 10px;
+}
