@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
 
 const Todo = require('../../models/Todo');
 
@@ -19,7 +20,7 @@ router.get('/', async (req, res) => {
 // @route     POST api/todos
 // @desc      Create NEW Todo
 // @access    Public
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
     let { text } = req.body;
     const newTodo = await Todo.create({ text });
@@ -33,7 +34,7 @@ router.post('/', async (req, res) => {
 // @route     PUT api/todos/:id
 // @desc      Update Todo
 // @access    Public
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
   try {
     const updateTodo = await Todo.findById(req.params.id);
     await Todo.findByIdAndUpdate(req.params.id, {
@@ -49,7 +50,7 @@ router.put('/:id', async (req, res) => {
 // @route     DELETE api/todos/:id
 // @desc      Create NEW Todo
 // @access    Public
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     await Todo.findByIdAndRemove(req.params.id);
     res.json('Todo Deleted');

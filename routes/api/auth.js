@@ -54,7 +54,7 @@ router.post('/', async (req, res) => {
       { expiresIn: 60 * 60 * 100 },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ token, user });
       }
     );
   } catch (err) {
