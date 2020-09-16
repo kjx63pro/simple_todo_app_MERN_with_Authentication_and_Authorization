@@ -9,6 +9,7 @@ connectDB();
 // Define Routes
 app.use('/api/todos', require('./routes/api/todos'));
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 // Production: PORT vs Development:5000
 const PORT = process.env.PORT || 5000;
