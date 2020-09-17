@@ -1,8 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
 
 const Register = () => {
   const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
 
   const [user, setUser] = useState({
     name: '',
@@ -12,6 +14,13 @@ const Register = () => {
   });
 
   const { name, email, password, password2 } = user;
+
+  useEffect(() => {
+    if (authContext.error === 'User already exists') {
+      alertContext.setAlert(authContext.error);
+      authContext.clearErrors();
+    }
+  }, [authContext.error]);
 
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -24,12 +33,16 @@ const Register = () => {
     } else if (password !== password2) {
       alertContext.setAlert('Passwords do not match');
     } else {
-      console.log('Register submit');
+      authContext.register({
+        name,
+        email,
+        password,
+      });
     }
   };
   return (
     <div>
-      <h1>Reigster</h1>
+      <h1>Register</h1>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
           <label htmlFor='name'>Name: </label>
