@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import './AddForm.css';
 
-import TodoContext from '../context/todo/TodoContex';
+import TodoContext from '../context/todo/todoContex';
 
 import { Button } from '@material-ui/core';
 
