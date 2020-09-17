@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
 
     const payload = {
       user: {
-        id: user._id,
+        id: user.id,
       },
     };
 

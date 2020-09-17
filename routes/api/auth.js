@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
     // if a password in an input field is same as the password saved in the DB, generate a token
     const payload = {
       user: {
-        id: user._id,
+        id: user.id,
       },
     };
     jwt.sign(
