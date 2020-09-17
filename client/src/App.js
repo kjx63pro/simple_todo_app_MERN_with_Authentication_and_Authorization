@@ -5,8 +5,8 @@ import Todo from './components/Todo';
 import AddForm from './components/AddForm';
 import AppNavbar from './components/Navbar/AppNavbar';
 import About from './components/About';
-import Register from './components/Register';
-import Login from './components/Login';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 
 import TodoState from './context/todo/TodoState';
 import AuthState from './context/auth/AuthState';
@@ -32,9 +32,9 @@ function App() {
                 <hr />
                 <AddForm />
               </Route>
-              <Route path='/about' component={About}></Route>
-              <Route path='/register' component={Register}></Route>
-              <Route path='/login' component={Login}></Route>
+              <Route exact path='/about' component={About}></Route>
+              <Route exact path='/register' component={Register}></Route>
+              <Route exact path='/login' component={Login}></Route>
             </Switch>
           </div>
         </Router>
