@@ -14,7 +14,10 @@ import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import setAuthToken from './utils/setAuthToken';
 
+import PrivateRoute from './components/routing/PrivateRoute';
+
 import './App.css';
+import Home from './components/pages/Home';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -30,17 +33,7 @@ function App() {
             <Alerts />
             <div className='app'>
               <Switch>
-                <Route path='/' exact>
-                  <h2>
-                    Simple Todo App with React Hooks{' '}
-                    <span role='img' aria-label='rocket'>
-                      🚀
-                    </span>{' '}
-                  </h2>
-                  <Todo />
-                  <hr />
-                  <AddForm />
-                </Route>
+                <PrivateRoute path='/' exact component={Home}></PrivateRoute>
                 <Route exact path='/about' component={About}></Route>
                 <Route exact path='/register' component={Register}></Route>
                 <Route exact path='/login' component={Login}></Route>

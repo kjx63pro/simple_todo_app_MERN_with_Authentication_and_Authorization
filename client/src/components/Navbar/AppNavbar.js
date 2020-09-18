@@ -2,14 +2,13 @@ import React, { Fragment, useContext } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { LOGOUT } from '../../context/types';
 
 const AppNavbar = () => {
   const authContext = useContext(AuthContext);
   const toggle = () => {};
 
   const onLogout = () => {
-    LOGOUT();
+    authContext.logout();
   };
 
   const guestLinks = (
