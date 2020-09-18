@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, Fragment } from 'react';
 import './Todo.css';
-import TodoContext from '../context/todo/TodoContex';
+import TodoContext from '../../context/todo/todoContex';
 
 import { Button } from '@material-ui/core';
-import Spinner from './layout/Spinner';
+import Spinner from '../layout/Spinner';
 
 const Todo = () => {
   const todoContext = useContext(TodoContext);
