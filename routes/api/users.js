@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
 
     const payload = {
       user: {
-        id: user.id, //
+        id: user.id,
       },
     };
 
@@ -60,13 +60,9 @@ router.post('/', async (req, res) => {
     */
 
     // jwt.sign(payload, secretOrPrivateKey, [options, callback])
-    const token = jwt.sign(
-      {
-        payload,
-      },
-      config.get('jwtSecret'),
-      { expiresIn: 60 * 60 }
-    );
+    const token = jwt.sign(payload, config.get('jwtSecret'), {
+      expiresIn: 60 * 60,
+    });
 
     // token
     /*
