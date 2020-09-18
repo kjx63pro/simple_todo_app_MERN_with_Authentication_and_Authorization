@@ -23,7 +23,7 @@ router.get('/', auth, async (req, res) => {
 
 // @route     POST api/auth
 // @desc      Auth user & get token
-// @access    Private
+// @access    public
 router.post('/', async (req, res) => {
   const { email, password } = req.body;
 
