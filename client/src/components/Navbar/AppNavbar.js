@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { Fragment, useContext } from 'react';
+import AuthContext from '../../context/auth/authContext';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { LOGOUT } from '../../context/types';
 
 const AppNavbar = () => {
+  const authContext = useContext(AuthContext);
   const toggle = () => {};
+
+  const onLogout = () => {
+    LOGOUT();
+  };
+
+  const guestLinks = (
+    <Fragment>
+      <Nav.Link as={Link} to='/register'>
+        Sign Up
+      </Nav.Link>
+      <Nav.Link as={Link} to='login'>
+        Login
+      </Nav.Link>
+    </Fragment>
+  );
+  const authLinks = (
+    <Fragment>
+      <Nav.Link>Hello {authContext.user && authContext.user.name}</Nav.Link>
+      <Nav.Link as={Link} to='#!' onClick={onLogout}>
+        Logout
+      </Nav.Link>
+    </Fragment>
+  );
+
   return (
     <div>
       <Navbar bg='success' variant='dark' expand='sm' className='mb-5'>
@@ -13,21 +40,8 @@ const AppNavbar = () => {
           </Navbar.Brand>
           <Navbar.Toggle onClick={toggle}></Navbar.Toggle>
           <Navbar.Collapse>
-            <Nav className='mr-auto'>
-              <Nav.Link as={Link} to='/'>
-                Home
-              </Nav.Link>
-              <Nav.Link as={Link} to='/about'>
-                About
-              </Nav.Link>
-            </Nav>
             <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/register'>
-                Sign Up
-              </Nav.Link>
-              <Nav.Link as={Link} to='login'>
-                Login
-              </Nav.Link>
+              {authContext.isAuthenticated ? authLinks : guestLinks}
             </Nav>
           </Navbar.Collapse>
         </Container>

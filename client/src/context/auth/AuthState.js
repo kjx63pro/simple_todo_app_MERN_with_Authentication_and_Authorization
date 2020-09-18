@@ -97,7 +97,11 @@ const AuthState = (props) => {
   };
 
   // Logout
-
+  const logout = () => {
+    dispatch({
+      type: LOGOUT,
+    });
+  };
   // Clear Errors
   const clearErrors = () => {
     dispatch({ type: clearTimeout });
@@ -115,6 +119,7 @@ const AuthState = (props) => {
         login,
         clearErrors,
         loadUser,
+        logout,
       }}
     >
       {props.children}
