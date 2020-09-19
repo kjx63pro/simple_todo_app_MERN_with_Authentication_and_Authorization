@@ -61,7 +61,7 @@ router.post('/', async (req, res) => {
 
     // jwt.sign(payload, secretOrPrivateKey, [options, callback])
     const token = jwt.sign(payload, config.get('jwtSecret'), {
-      expiresIn: 60 * 60,
+      expiresIn: 60 * 60 * 10,
     });
 
     // token
