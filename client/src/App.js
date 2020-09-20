@@ -10,9 +10,10 @@ import AuthState from './context/auth/AuthState.js';
 import AppNavbar from './components/layout/AppNavbar';
 import About from './components/pages/About';
 import Register from './components/auth/Register';
-import Login from './components/auth/Login';
+
 import Home from './components/pages/Home';
 import setAuthToken from './utils/setAuthToken';
+import Login from './components/auth/Login';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

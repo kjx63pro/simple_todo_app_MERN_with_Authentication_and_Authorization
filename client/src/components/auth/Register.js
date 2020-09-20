@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
-import { set } from 'mongoose';
 
 const Register = (props) => {
   const authContext = useContext(AuthContext);

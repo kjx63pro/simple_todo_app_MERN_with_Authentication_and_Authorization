@@ -7,9 +7,11 @@ import authReducer from './authReducer';
 import setAuthToken from '../../utils/setAuthToken';
 
 import {
+  USER_LOADED,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  USER_LOADED,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
   AUTH_ERROR,
 } from '../types';
 
@@ -26,12 +28,9 @@ const AuthState = (props) => {
 
   // Load User
   const loadUser = async () => {
-    // @todo - load token into global headers
-    console.log(localStorage); //
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
-    console.log(axios.defaults.headers.common['x-auth-token']); // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2NzMwNmU4MDA4YjkyMWNlNjJhNjA3In0sImlhdCI6MTYwMDU5ODEyNiwiZXhwIjoxNjAwNjM0MTI2fQ.TWp6HKM0dF8maU81vy_RRhyGIJVsESpo5AMr4h6YfnY
 
     try {
       const res = await axios.get('/api/auth');
@@ -70,6 +69,30 @@ const AuthState = (props) => {
     }
   };
 
+  const login = async (user) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    // console.log(user); {name: "Kenji Ueyama", email: "kenji@gmail.com", password: "123456", password2: "123456"}
+    try {
+      const res = await axios.post('/api/auth', user, config);
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+
+      loadUser();
+    } catch (err) {
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: err.response.data.msg,
+      });
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -80,6 +103,7 @@ const AuthState = (props) => {
         error: state.error,
         loadUser,
         register,
+        login,
       }}
     >
       {props.children}
