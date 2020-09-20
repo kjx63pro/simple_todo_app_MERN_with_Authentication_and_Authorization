@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import { set } from 'mongoose';
 
-const Register = () => {
+const Register = (props) => {
   const authContext = useContext(AuthContext);
 
-  const { register } = authContext;
+  const { register, isAuthenticated } = authContext;
 
   const [user, setUser] = useState({
     name: '',
@@ -13,6 +13,13 @@ const Register = () => {
     password: '',
     password2: '',
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/');
+    }
+    // eslint-disable-next-line
+  }, [props.history, isAuthenticated]);
 
   const { name, email, password, password2 } = user;
 

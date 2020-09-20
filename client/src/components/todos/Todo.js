@@ -1,14 +1,18 @@
 import React, { useContext, useEffect, Fragment } from 'react';
 import './Todo.css';
-import TodoContext from '../../context/todo/todoContex';
+import TodoContext from '../../context/todo/todoContext';
+import Authcontext from '../../context/auth/authContext';
 
 import { Button } from '@material-ui/core';
 import Spinner from '../layout/Spinner';
 
 const Todo = () => {
   const todoContext = useContext(TodoContext);
+  const authContext = useContext(Authcontext);
+
   useEffect(() => {
     todoContext.getTodos();
+    authContext.loadUser();
     // eslint-disable-next-line
   }, []);
 

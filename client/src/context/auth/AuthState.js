@@ -4,7 +4,14 @@ import AuthContext from './authContext';
 
 import authReducer from './authReducer';
 
-import { REGISTER_SUCCESS, REGISTER_FAIL } from '../types';
+import setAuthToken from '../../utils/setAuthToken';
+
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+} from '../types';
 
 const AuthState = (props) => {
   const initialState = {
@@ -16,6 +23,28 @@ const AuthState = (props) => {
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
+
+  // Load User
+  const loadUser = async () => {
+    // @todo - load token into global headers
+    console.log(localStorage); //
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+    console.log(axios.defaults.headers.common['x-auth-token']); // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2NzMwNmU4MDA4YjkyMWNlNjJhNjA3In0sImlhdCI6MTYwMDU5ODEyNiwiZXhwIjoxNjAwNjM0MTI2fQ.TWp6HKM0dF8maU81vy_RRhyGIJVsESpo5AMr4h6YfnY
+
+    try {
+      const res = await axios.get('/api/auth');
+      dispatch({
+        type: 'USER_LOADED',
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: 'AUTH_ERROR',
+      });
+    }
+  };
 
   const register = async (user) => {
     const config = {
@@ -31,6 +60,8 @@ const AuthState = (props) => {
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
+
+      loadUser();
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
@@ -47,6 +78,7 @@ const AuthState = (props) => {
         user: state.user,
         token: state.token,
         error: state.error,
+        loadUser,
         register,
       }}
     >
