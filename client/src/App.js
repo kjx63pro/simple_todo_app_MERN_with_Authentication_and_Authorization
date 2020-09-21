@@ -10,22 +10,25 @@ import About from './components/pages/About';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Home from './components/pages/Home';
+import AuthState from './context/auth/AuthState';
 
 function App() {
   return (
-    <TodoState>
-      <Router>
-        <AppNavbar />
-        <div className='app'>
-          <Switch>
-            <Route path='/' exact component={Home}></Route>
-            <Route path='/about' component={About}></Route>
-            <Route path='/register' component={Register}></Route>
-            <Route path='/login' component={Login}></Route>
-          </Switch>
-        </div>
-      </Router>
-    </TodoState>
+    <AuthState>
+      <TodoState>
+        <Router>
+          <AppNavbar />
+          <div className='app'>
+            <Switch>
+              <Route path='/' exact component={Home}></Route>
+              <Route path='/about' component={About}></Route>
+              <Route path='/register' component={Register}></Route>
+              <Route path='/login' component={Login}></Route>
+            </Switch>
+          </div>
+        </Router>
+      </TodoState>
+    </AuthState>
   );
 }
 
