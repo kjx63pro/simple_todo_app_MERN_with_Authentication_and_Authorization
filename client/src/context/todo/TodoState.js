@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
-import TodoContext from './todoContex';
+import TodoContext from './todoContext';
 import todoReducer from './todoReducer';
 
 import {
