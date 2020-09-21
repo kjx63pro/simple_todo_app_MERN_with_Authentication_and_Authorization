@@ -23,7 +23,7 @@ const AppNavbar = () => {
             </Nav>
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/register'>
-                Sign Up
+                Register
               </Nav.Link>
               <Nav.Link as={Link} to='login'>
                 Login
